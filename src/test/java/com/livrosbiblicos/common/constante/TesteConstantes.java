@@ -29,8 +29,19 @@ public class TesteConstantes {
     public static final String GRUPO_CARTAS_PAULO = "Cartas de Paulo";
     public static final String TESTAMENTO_VT = "VT";
     public static final String TESTAMENTO_NT = "NT";
+    public static final String ERROR_NAO_ENCONTRADO = "Não encontrado";
+    public static final String MSG_AUTOR_INVALIDO = "Autor inválido";
+    public static final String MSG_GRUPO_INVALIDO = "Grupo inválido";
+    public static final String MSG_LIVRO_NAO_ENCONTRADO = "Livro não encontrado";
+    public static final String MSG_TESTAMENTO_INVALIDO = "Testamento inválido";
+
+
 
     public static <T> ResultMatcher tagBodyByPosicao(Integer posicao, String nomeTag, T valorTag) {
         return jsonPath(String.format("[%d].%s", posicao, nomeTag), Matchers.is(valorTag));
+    }
+
+    public static String mensagemParametroInvalido(String parametro, String qtdCaracter) {
+        return String.format("O parâmetro '%s' é inválido. Deve conter pelo menos %s caracteres.", parametro, qtdCaracter);
     }
 }

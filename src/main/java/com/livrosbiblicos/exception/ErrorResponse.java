@@ -1,7 +1,5 @@
 package com.livrosbiblicos.exception;
 
-import java.util.List;
-
 public class ErrorResponse {
     private String message;
 

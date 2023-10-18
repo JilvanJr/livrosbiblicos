@@ -8,7 +8,6 @@ import com.livrosbiblicos.repository.LivrosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -87,8 +86,8 @@ public class LivrosService {
             throw new ParametroInvalidoException.TestamentoInvalidoException("O parâmetro 'testamento' é inválido. Deve ser 'VT' ou 'NT'.");
         }
 
-        if (autor != null && autor.length() < 3) {
-            throw new ParametroInvalidoException.AutorInvalidoException("O parâmetro 'autor' é inválido. Deve conter pelo menos 3 caracteres.");
+        if (autor != null && autor.length() < 2) {
+            throw new ParametroInvalidoException.AutorInvalidoException("O parâmetro 'autor' é inválido. Deve conter pelo menos 2 caracteres.");
         }
 
         if (grupo != null && grupo.length() < 3) {

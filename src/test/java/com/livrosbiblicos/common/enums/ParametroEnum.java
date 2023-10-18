@@ -8,7 +8,9 @@ import lombok.Getter;
 public enum ParametroEnum {
     PARAM_AUTOR("autor"),
     PARAM_GRUPO("grupo"),
-    PARAM_TESTAMENTO("testamento");
+    PARAM_TESTAMENTO("testamento"),
+    PATH_PARAM("{id}"),
+    TAG_STATUS_CODE("status");
 
     private final String parametro;
 }

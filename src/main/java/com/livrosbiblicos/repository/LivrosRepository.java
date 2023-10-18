@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface LivrosRepository extends MongoRepository<Livros, String> {
@@ -19,13 +20,11 @@ public interface LivrosRepository extends MongoRepository<Livros, String> {
 
     List<Livros> findByAutorContainingIgnoreCaseAndGrupoContainingIgnoreCase(String autor, String grupo);
 
-    List<Livros> findByTestamentoAndGrupoContainingIgnoreCaseAndAutorContainingIgnoreCase(
-            String testamento, String grupo, String autor
-    );
-
     List<Livros> findByTestamento(String testamento);
 
     List<Livros> findByAutorContainingIgnoreCase(String autor);
 
     List<Livros> findByGrupoContainingIgnoreCase(String grupo);
+
+    Optional<Livros> findByNome(String nome);
 }

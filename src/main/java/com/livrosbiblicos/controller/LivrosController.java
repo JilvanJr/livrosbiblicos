@@ -1,4 +1,4 @@
-package com.livrosbiblicos.resources;
+package com.livrosbiblicos.controller;
 
 import com.livrosbiblicos.domain.LivroDetalhes;
 import com.livrosbiblicos.domain.Livros;
@@ -6,6 +6,7 @@ import com.livrosbiblicos.dto.LivrosDTO;
 import com.livrosbiblicos.exception.ErrorResponse;
 import com.livrosbiblicos.exception.ParametroInvalidoException;
 import com.livrosbiblicos.services.LivrosService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -20,12 +21,13 @@ import java.util.stream.Collectors;
 @RestController
 @Validated
 @RequestMapping(value = "/livros")
-public class LivrosResource {
+public class LivrosController {
 
     @Autowired
     private LivrosService service;
 
     @GetMapping
+    @Operation(summary = "Lista todos os livros")
     public ResponseEntity<?> findAll(
             @RequestParam(value = "testamento", required = false) String testamento,
             @RequestParam(value = "autor", required = false) String autor,
@@ -48,18 +50,21 @@ public class LivrosResource {
 
 
     @GetMapping("/{id}")
+    @Operation(summary = "Lista os livros por id")
     public ResponseEntity<LivrosDTO> findById(@PathVariable String id) {
         Livros obj = service.findById(id);
         return ResponseEntity.ok().body(new LivrosDTO(obj));
     }
 
     @GetMapping("/{id}/detalhes")
+    @Operation(summary = "Lista os detalhes dos livros por id")
     public ResponseEntity<List<LivroDetalhes>> findLivrosDetalhes(@PathVariable String id) {
         Livros obj = service.findById(id);
         return ResponseEntity.ok().body(obj.getAutorId());
     }
 
     @PostMapping
+    @Operation(summary = "Inseri novo livro")
     public ResponseEntity<Void> insert(@Valid @RequestBody LivrosDTO objDto) {
         Livros obj = service.fromDTO(objDto);
         obj = service.insert(obj);
@@ -68,16 +73,18 @@ public class LivrosResource {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Deleta livro por id")
     public ResponseEntity<Void> delete(@PathVariable String id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "Altera informações dos livros por id")
     public ResponseEntity<Void> update(@RequestBody LivrosDTO livrosDTO, @PathVariable String id) {
         Livros obj = service.fromDTO(livrosDTO);
         obj.setId(id);
-        obj = service.update(obj);
+        service.update(obj);
         return ResponseEntity.noContent().build();
     }
 }

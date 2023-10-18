@@ -7,7 +7,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum UrlEnum {
 
-    LIVROS("/livros");
+    LIVROS("/livros"),
+    LIVROS_ID("/livros/{id}"),
+    LIVROS_ID_DETALHES("/livros/{id}/detalhes");
 
     private final String url;
 }
