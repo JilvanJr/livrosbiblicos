@@ -3,12 +3,10 @@ package com.livrosbiblicos.funcional;
 import com.livrosbiblicos.BaseTestFuncional;
 import com.livrosbiblicos.common.enums.ParametroEnum;
 import com.livrosbiblicos.provider.LivrosBadRequestProvider;
-import com.livrosbiblicos.repository.LivrosRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ArgumentsSource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.MvcResult;
 
 import static com.livrosbiblicos.common.constante.MatcherConstantes.*;
